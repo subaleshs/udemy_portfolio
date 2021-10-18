@@ -6,14 +6,34 @@ from .models import course
 
 
 def home(request):
+
+    """
+    Get to the home page
+
+    request: HttpRequest object
+
+    Returns home page with list of courses
+    
+    """
     print(datetime.now())
     courseCat = course.objects.all()
     print(courseCat)
     return render(request,'portfapp\ind.html',{'courses':courseCat})
 
+
+
 def details(request,crid):
+
+    """
+    Get details about a course
+
+    request: HttpRequest object
+
+    crid: primary key of the course
+
+    Returns the details of a particular course
+    
+    """
+
     val = course.objects.get(pk=crid)
-    # print(v)
-    # val = get_list_or_404(course,pk=crid)
-    # print(val)
     return render(request,'portfapp/details.html',{'course':val})
